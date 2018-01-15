@@ -8,9 +8,9 @@ GREGClean <- function(W,C,B,L,U){
     Mid = (C*t(replicate(nrow(C),c(W))))%*%t(C)
     #W = pmax(pmin(W*(1+(Tot%*%solve(Mid))%*%C), U), L)
     W = W*(1+(t(solve(Mid, t(Tot))))%*%C)
-    Int = B - C%*%t(W)
     W[W > U] <- U
     W[W < L] <- L
+	Int = B - C%*%t(W)
   }
   return(W)
 }
